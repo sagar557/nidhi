@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MyPortfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+  <body>
+    <div id="header">
+        <div class="container-fluid con">
+            <nav>
+                <img src="" class="logo" alt="">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="bi bi-x" onclick="closemenu()"></i>
+                </ul>
+                <i class="bi bi-list" onclick="openmenu()"></i>
+            </nav>
+            <div class="header_text">
+                <p>Medical Student</p>
+                <h1>Hi, I'm <span>Nidhi</span></h1>
+                <div class="btn btn_2" style="display: inline-block;"><a style="text-decoration: none; color:#fff;" href="#contact">Contact Us</a></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- ------------------------about--------------------- -->
+    <div id="about">
+        <div class="con">
+            <div class="row">
+                <div class="about_col_1">
+                    <img src="img/user.png" alt="">
+                </div>
+                <div class="about_col_2">
+                    <h1 class="sub_title">About Me</h1>
+                    <p>I m nidhi .From Haryana. Graduate in medical science.</p>
+                    <div class="tab_titles">
+                        <p class="tab_links active_link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab_links" onclick="opentab('education')">Education</p>
+
+                    </div>
+                    <div class="tab_contants active_tab" id="skills">
+                        <ul >
+                            <li><span>ACADEMIC COMPETENCE</span><br>Skill ch bss the ability to do something well</li>
+                        </ul>
+                    </div>
+                    <div class="tab_contants" id="education">
+                        <ul >
+                            <li><span>2022</span><br>Bachelor's in science (Medical) From Maharishi Dyanand college Hisar</li>
+                            <li><span>2018</span><br>PCB from Government senior secondary school Narnaund </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- ------------------------ contact--------------------- -->
+
+<div id="contact">
+    <div class="con">
+        <div class="row">
+            <div class="contact_left">
+                <h1 class="text-center">Contact Me</h1>
+
+                <div class="contact_right">
+                    <form action="" name="submit-to-google-sheet">
+                    <input type="text" name="Name" id="" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <input type="number" name="Number" placeholder="Your Number" required>
+                    <textarea name="Message"  rows="6" placeholder="Your Message"></textarea>
+                    <div class="row">
+                        <div class="col"style="display:flex; justify-content:center; margin:40px;">
+                            <button type="submit" class="btn btn_2">Submit</button>
+
+                        </div>
+                    </div>
+                    <!-- <input type="text" name="" id=""> -->
+                </form>
+                <div class="col text-center" style="font-size: 18px;">
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="copyright">
+        <p>Tthanks for visiting my website</p>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script>
+    var tablinks = document.getElementsByClassName("tab_links");
+    var tabcontants = document.getElementsByClassName("tab_contants");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active_link");
+        }
+        for(tabcontant of tabcontants){
+            tabcontant.classList.remove("active_tab");
+        }
+        event.currentTarget.classList.add("active_link");
+        document.getElementById(tabname).classList.add("active_tab");
+
+    }
+
+  </script>
+  <script>
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right="0";
+    }
+    function closemenu(){
+        sidemenu.style.right="-200px";
+    }
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzK876Le93fX437aZb0aGd-Q3Ceu3H44g27aoD2XZFOzDnkq049JtPQiOwFJ8W-sIQ6yw/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg");
+
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },2000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+</html>
