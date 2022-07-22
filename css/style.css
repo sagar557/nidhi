@@ -358,7 +358,7 @@ nav ul .bi{
     cursor: pointer;
 }
 #header{
-    background-image: url("/img/phone-background.png");
+    background-image: url("../img/phone-background.png");
 }
 .header_text{
     margin-top: 100%;
